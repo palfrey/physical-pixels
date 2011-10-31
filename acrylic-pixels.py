@@ -8,10 +8,10 @@ from viewer import Viewer
 class PixelsViewer(Viewer):
 	def setOptions(self, optparser):
 		Viewer.setOptions(self, optparser)
-		optparser.add_option("--rod-length=", dest="depth", default = 20, type = "float")
-		optparser.add_option("--rod-width=", dest="rodw", default = 5, type = "float")
-		optparser.add_option("--pixel-size=", dest="size", default = 20, type = "float")
-		optparser.add_option("--pixel-spacing=", dest="spacing", default = 5, type = "float")
+		optparser.add_option("--rod-length", help = "Length of spacing rods", dest="depth", default = 20, type = "float")
+		optparser.add_option("--rod-width", help = "Width of spacing rods", dest="rodw", default = 5, type = "float")
+		optparser.add_option("--pixel-size", help = "Size of individual display pixels", dest="size", default = 20, type = "float")
+		optparser.add_option("--pixel-spacing", help = "Gap between pixels", dest="spacing", default = 5, type = "float")
 
 	# run
 	def run(self):
