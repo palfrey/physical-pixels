@@ -64,7 +64,7 @@ from cgkit.all import *
 from cgkit.scene import getScene
 import cgkit
 from cgkit.cmds import *
-from tool import Tool
+from cgkit.tool import Tool
 
 import cgkit.wintab
 from cgkit.wintab.constants import *
@@ -318,12 +318,9 @@ class Viewer(Tool):
         # Output OpenGL infos...
         if self.options.verbose:
             print "OpenGL information:"
-            try:
-                print "  Vendor  :",glGetString(GL_VENDOR)
-                print "  Renderer:", glGetString(GL_RENDERER)
-                print "  Version :",glGetString(GL_VERSION)
-            except ImportError,e:
-                print e
+            print "  Vendor  :",glGetString(GL_VENDOR)
+            print "  Renderer:", glGetString(GL_RENDERER)
+            print "  Version :",glGetString(GL_VERSION)
             
         # Check if stereo output is active...
         if self.stereo_mode==2:
@@ -660,37 +657,8 @@ class Viewer(Tool):
         img = Image.fromstring("RGB", (srf.get_width(), srf.get_height()), data)
         img.save(fname)
         
-    def run(self):
-        """Run the tool.
-
-        This method calls the init() and action() method.
-        """
-
-        # Custom initialization
-        self.init()
-             
-        # No input file given? Then print the help page and exit
-        if len(self.args)==0:
-            self.optparser.print_help()
-            return
-
-        # Load plugins
-        self.loadPlugins()
-
-        # Load the input files...
-        for filename in self.args[:1]:
-            if self.options.verbose:
-                print 'Loading "%s"...'%filename
-            load(filename)
-
-        # Convert global settings into command line options
-        self.setOptionsFromGlobals()
-
-        self.cam = self.getCamera()
-
-        self.action()
-
-        getScene().clear()
+        
+        
 
 ######################################################################
 
