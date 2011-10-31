@@ -176,7 +176,7 @@ class Viewer(Tool):
         optparser.add_option("-s", "--save", metavar="NAME",
                              help="Save screenshots as images.")
         optparser.add_option("-N", "--navigation-mode", metavar="MODE",
-                             help="Navigation mode (MAX, Maya, Softimage). Default: Maya")
+                             help="Navigation mode (MAX, Maya, Softimage). Default: Softimage")
         optparser.add_option("-X", "--disable-spacedevice", action="store_true", default=False,
                              help="Disable SpaceMouse/SpaceBall.")
         optparser.add_option("-T", "--disable-wintab", action="store_true", default=False,
@@ -287,9 +287,9 @@ class Viewer(Tool):
                                 "Unknown polygon mode: '%s'")
 
         # Check the navigationmode option
-        Nopt = scene.getGlobal("navigationmode", "maya")
+        Nopt = scene.getGlobal("navigationmode", "softimage")
         self.navigation_mode = self.translateKeyWordOpt(Nopt,
-                            { None:1, "max":0, "maya":1, "softimage":2 },
+                            { None:2, "max":0, "maya":1, "softimage":2 },
                             "Unknown navigation mode: '%s'")
 
     # action
